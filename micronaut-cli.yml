@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: ca.davidgrant
+---
+testFramework: junit
+sourceLanguage: java
