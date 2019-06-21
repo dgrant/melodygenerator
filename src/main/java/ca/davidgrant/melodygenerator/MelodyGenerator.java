@@ -46,7 +46,7 @@ public class MelodyGenerator {
       }
       patterns = newPatterns;
     }
-    Collections.shuffle(patterns);
+//    Collections.shuffle(patterns);
     return patterns;
   }
 

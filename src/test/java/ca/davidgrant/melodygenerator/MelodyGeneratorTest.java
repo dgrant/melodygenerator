@@ -14,52 +14,53 @@ public class MelodyGeneratorTest {
   private MelodyGenerator melodyGenerator;
   private MelodyGeneratorConfig config2;
   private MelodyGeneratorConfig config3;
-  private MelodyGeneratorConfig config5;
 
   @Before
   public void setUp() {
     melodyGenerator = new MelodyGenerator();
-    config2 = MelodyGeneratorConfig.builder()
-        .biggestGap(2)
-        .possibleNotes(ImmutableList.of(1,2,3,4,5))
-        .numNotes(2)
-        .startingNotes(ImmutableList.of(1,5))
-        .endingNotes(ImmutableList.of(1,2,3,4,5))
-        .biggestGap(2)
-        .maxOccurrences(2)
-        .maxSameInARow(2)
-        .maxRepetitionsTotal(1)
-        .build();
-    config3 = MelodyGeneratorConfig.builder()
-        .biggestGap(2)
-        .possibleNotes(ImmutableList.of(1,2,3,4,5))
-        .numNotes(3)
-        .startingNotes(ImmutableList.of(1,5))
-        .endingNotes(ImmutableList.of(1,2,3,4,5))
-        .biggestGap(2)
-        .maxOccurrences(2)
-        .maxSameInARow(2)
-        .maxRepetitionsTotal(1)
-        .build();
-    config5 = MelodyGeneratorConfig.builder()
-        .biggestGap(2)
-        .possibleNotes(ImmutableList.of(1,2,3,4,5))
-        .numNotes(5)
-        .startingNotes(ImmutableList.of(1,5))
-        .endingNotes(ImmutableList.of(1,3,5))
-        .biggestGap(2)
-        .maxOccurrences(2)
-        .maxSameInARow(2)
-        .maxRepetitionsTotal(1)
-        .maxChangesInDirection(2)
-        .maxDuplicates(1)
-        .build();
   }
 
+  @Test
+  public void test_grade1() {
+    System.out.println("C major");
+    final List<List<String>> generateC = melodyGenerator.generate(MelodyGeneratorConfigs.GRADE_1, ImmutableList.of("C", "D", "E", "F", "G"));
+    for (List<String> pattern : generateC) {
+      System.out.println(Arrays.toString(pattern.toArray()));
+    }
+    System.out.println("G major");
+    final List<List<String>> generateG = melodyGenerator.generate(MelodyGeneratorConfigs.GRADE_1, ImmutableList.of("G", "A", "B", "C", "D"));
+    for (List<String> pattern : generateG) {
+      System.out.println(Arrays.toString(pattern.toArray()));
+    }
+    System.out.println("A minor");
+    final List<List<String>> generateA = melodyGenerator.generate(MelodyGeneratorConfigs.GRADE_1, ImmutableList.of("A", "B", "C", "D", "E"));
+    for (List<String> pattern : generateA) {
+      System.out.println(Arrays.toString(pattern.toArray()));
+    }
+  }
 
   @Test
-  public void test() {
-    final List<List<String>> generate = melodyGenerator.generate(config5, ImmutableList.of("C", "D", "E", "F", "G"));
+  public void test_3note() {
+    System.out.println("C major");
+    final List<List<String>> generateC = melodyGenerator.generate(MelodyGeneratorConfigs.BASIC_3_NOTE, ImmutableList.of("C", "D", "E", "F", "G"));
+    for (List<String> pattern : generateC) {
+      System.out.println(Arrays.toString(pattern.toArray()));
+    }
+    System.out.println("G major");
+    final List<List<String>> generateG = melodyGenerator.generate(MelodyGeneratorConfigs.BASIC_3_NOTE, ImmutableList.of("G", "A", "B", "C", "D"));
+    for (List<String> pattern : generateG) {
+      System.out.println(Arrays.toString(pattern.toArray()));
+    }
+    System.out.println("A minor");
+    final List<List<String>> generateA = melodyGenerator.generate(MelodyGeneratorConfigs.BASIC_3_NOTE, ImmutableList.of("A", "B", "C", "D", "E"));
+    for (List<String> pattern : generateA) {
+      System.out.println(Arrays.toString(pattern.toArray()));
+    }
+  }
+
+  @Test
+  public void test_4note() {
+    final List<List<String>> generate = melodyGenerator.generate(MelodyGeneratorConfigs.BASIC_4_NOTE, ImmutableList.of("C", "D", "E", "F", "G"));
     for (List<String> pattern : generate) {
       System.out.println(Arrays.toString(pattern.toArray()));
     }
